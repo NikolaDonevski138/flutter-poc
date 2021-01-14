@@ -6,6 +6,7 @@ import '../providers/great_places.dart';
 import '../screen/places_list_screen.dart';
 import '../widgets/home.dart';
 import '../screen/add_place_screen.dart';
+import '../screen/create_post.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = '/home-screen';
@@ -18,6 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, Object>> _pages = [
     {'page': Home(), 'title': 'Home'},
     {'page': PlacesListScreen(), 'title': 'Take Picture'},
+    {
+      'page': CreatePost(),
+      'title': 'Create Post',
+    }
   ];
 
   int _selectedPageIndex = 0;
@@ -31,9 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider.value(
-            value: Images(),
-          ),
+          // ChangeNotifierProvider.value(
+          //   value: Images(),
+          // ),
         ],
         child: Scaffold(
           appBar: AppBar(
@@ -60,6 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icon(Icons.home), title: Text('Home')),
               BottomNavigationBarItem(
                   icon: Icon(Icons.camera), title: Text('Camera')),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.post_add),title: Text('Add Post'))
             ],
           ),
         ));

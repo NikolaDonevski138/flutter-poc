@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:provider/provider.dart';
-import '../providers/images.dart';
 import '../helpers/apihelper.dart';
-import '../models/image.dart';
+import '../helpers/apihelper.dart';
+import '../helpers/apihelper.dart';
+import '../models/photos.dart';
+import 'package:pl_grid/pl_grid.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,67 +12,42 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int numberOfItems;
-  var dts = DTS();
-  int _rowPerPage = PaginatedDataTable.defaultRowsPerPage;
-
-  _getImages() async {
-    var provider = Provider.of<Images>(context, listen: false);
-    var response = await APIHelper.getImagesApi();
-    if (response.isSuccessful) {
-      provider.setImagesList(response.data);
-    } else {
-      provider.setIsProcessing(false);
-    }
-  }
-
-  @override
-  void initState() {
-    _getImages();
-    super.initState();
-  }
+  final HttpService httpService = HttpService();
+  int _rowsPerPage = PaginatedDataTable.defaultRowsPerPage;
+  int _rowsOffset = 0;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: PaginatedDataTable(
-          header: Text('Data Table Header'),
-          columns: [
-            DataColumn(label: Text('col#1'), tooltip: 'rasd'),
-            DataColumn(label: Text('col#2')),
-            DataColumn(label: Text('col#3')),
-            DataColumn(label: Text('col#4'))
-          ],
-          source: dts,
-          onRowsPerPageChanged: (r) {
-            setState(() {
-              _rowPerPage = r;
-            });
-          },
-          rowsPerPage: _rowPerPage),
+    return Scaffold(
+      body: FutureBuilder(
+        future: httpService.getPhotos(),
+        builder: (BuildContext context, AsyncSnapshot<List<Photos>> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasData) {
+            List<Photos> photos = snapshot.data;
+
+            return Container(
+              height: 700,
+              width: double.infinity,
+              child: PlGrid(
+                headerColumns: ['Album Id', 'id', 'title', 'image'],
+                data: photos
+                    .map(
+                        (e) => [e.albumId, e.id, e.title, Image.network(e.url)])
+                    .toList(),
+                showSearchBar: false,
+                paginationDynamicStyle: (page) => TextStyle(color: Colors.blue),
+                applyZebraEffect: false,
+                columnWidthsPercentages: <double>[20, 20, 30, 30],
+                curPage: 1,
+                maxPages: 1,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
-}
-
-class DTS extends DataTableSource {
-  DTS();
-
-  @override
-  DataRow getRow(int index) {
-    return DataRow.byIndex(index: index, cells: [
-      DataCell(Text('#cel1$index')),
-      DataCell(Text('#cel2$index')),
-      DataCell(Text('#cel3$index')),
-      DataCell(Text('#cel4$index'))
-    ]);
-  }
-
-  @override
-  bool get isRowCountApproximate => true;
-
-  @override
-  int get rowCount => 100;
-
-  @override
-  int get selectedRowCount => 0;
 }

@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  data_tables:
+    dependency: "direct main"
+    description:
+      name: data_tables
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   fake_async:
     dependency: transitive
     description:
@@ -247,6 +254,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.9.2"
+  pl_grid:
+    dependency: "direct main"
+    description:
+      name: pl_grid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   platform:
     dependency: transitive
     description:
