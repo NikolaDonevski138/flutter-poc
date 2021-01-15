@@ -1,12 +1,10 @@
-import 'package:path/path.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../providers/images.dart';
-import '../providers/great_places.dart';
+
 import '../screen/places_list_screen.dart';
-import '../widgets/home.dart';
 import '../screen/add_place_screen.dart';
 import '../screen/create_post.dart';
+import '../widgets/home.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = '/home-screen';
@@ -35,11 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          // ChangeNotifierProvider.value(
-          //   value: Images(),
-          // ),
-        ],
+        providers: [],
         child: Scaffold(
           appBar: AppBar(
             title: Text(_pages[_selectedPageIndex]['title']),

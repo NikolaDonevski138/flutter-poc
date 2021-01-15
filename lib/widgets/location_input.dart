@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../helpers/location_helper.dart';
-import '../screen/map_screen.dart';
-import 'package:geolocator/geolocator.dart';
 
 class LocationInput extends StatefulWidget {
   final Function onSelectPlace;
@@ -34,21 +32,6 @@ class _LocationInputState extends State<LocationInput> {
       return;
     }
   }
-
-  // Future<void> _selectOnMap() async {
-  //   final selectedLocation = await Navigator.of(context).push(
-  //     MaterialPageRoute(
-  //       fullscreenDialog: true,
-  //       builder: (ctx) => MapScreen(
-  //         isSelecting: true,
-  //       ),
-  //     ),
-  //   );
-  //   if (selectedLocation == null) {
-  //     return;
-  //   }
-  //   // ...
-  // }
 
   @override
   Widget build(BuildContext context) {

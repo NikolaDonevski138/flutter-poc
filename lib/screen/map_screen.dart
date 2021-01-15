@@ -9,9 +9,8 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  
   String _previewImageUrl;
-  // double latitude;
-  // double longitude;
   Map data = {};
 
   void _showPreview() {

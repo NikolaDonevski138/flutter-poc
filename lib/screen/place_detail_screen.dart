@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/great_places.dart';
 import '../screen/map_screen.dart';
 import 'map_screen.dart';
-import 'map_screen.dart';
+
 
 class PlaceDetailScreen extends StatelessWidget {
   static const routeName = '/place-detail';
@@ -46,11 +46,6 @@ class PlaceDetailScreen extends StatelessWidget {
             child: Text('View on map'),
             textColor: Theme.of(context).primaryColor,
             onPressed: () {
-              //   Navigator.of(context).pushReplacementNamed(
-              //     MapScreen.routeName,
-              //     arguments: {'selectedPlace': selectedPlace},
-              //   );
-              // },
               Navigator.pushReplacementNamed(context, MapScreen.routeName,
                   arguments: {'latitude': latitude, 'longitude': longitude});
             })

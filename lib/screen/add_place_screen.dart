@@ -7,7 +7,6 @@ import '../models/place.dart';
 import '../widgets/image_input.dart';
 import '../widgets/location_input.dart';
 import '../providers/great_places.dart';
-import '../models/place.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   static const routeName = '/add-place';
@@ -38,6 +37,15 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     Provider.of<GreatPlaces>(context, listen: false)
         .addPlace(_titleController.text, _pickedImage, _pickedLocation);
     Navigator.of(context).pop();
+  }
+
+
+
+  @override
+  void initState() {
+    print('add_place');
+    //calls this multiple times when route is changed
+    super.initState();
   }
 
   @override
