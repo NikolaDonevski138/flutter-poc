@@ -5,12 +5,11 @@ import '../models/photos.dart';
 import '../models/post.dart';
 
 class HttpService {
-  final String photosApi =
-      "https://jsonplaceholder.typicode.com/photos?_start=0&_limit=500";
   final String postsApi = "https://jsonplaceholder.typicode.com/posts";
 
-  Future<List<Photos>> getPhotos() async {
-    final res = await http.get(photosApi);
+  Future<List<Photos>> getPhotos(int page) async {
+    final res = await http
+        .get("https://jsonplaceholder.typicode.com/albums/${page}/photos");
     if (res.statusCode == 200) {
       List<dynamic> body = jsonDecode(res.body);
       List<Photos> posts =
@@ -22,7 +21,8 @@ class HttpService {
     }
   }
 
-   Future<Post> createPost(String id, String title, String post) async {
+
+  Future<Post> createPost(String id, String title, String post) async {
     final res = await http.post(postsApi, body: {
       "title": title,
       "body": post,
@@ -31,6 +31,6 @@ class HttpService {
     if (res.statusCode == 201) {
       final String responseString = res.body;
       return postFromJson(responseString);
-    } 
+    }
   }
 }

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import '../helpers/apihelper.dart';
-import '../helpers/apihelper.dart';
-import '../helpers/apihelper.dart';
 import '../models/post.dart';
-import '../helpers/apihelper.dart';
+
 
 class CreatePost extends StatefulWidget {
   @override
