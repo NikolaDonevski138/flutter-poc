@@ -63,7 +63,7 @@ there is also declared five screens including Login Screen.
 
 <iframe src="https://drive.google.com/file/d/1SeqQIVFdowrp6NKPRnkHqRLCsV1uytQa/preview" width="440" height="400"></iframe>
 
-Login is a statefull widget with simple validation on the text inputs without backend, when user logs in "successfully" will be redirected to the Home Screen.</span>
+Login is a statefull widget with simple validation on the text inputs without backend user can login both with credentials like username and password, or with a biometric fingerprint authentication, when user logs in "successfully" will be redirected to the Home Screen.</span>
 
 <h4>2.Home Screen</h4>
 <iframe src="https://drive.google.com/file/d/1UfBIKo-b2YIRLP5zX_AYizywTodKVZOW/preview" width="440" height="400"></iframe>
